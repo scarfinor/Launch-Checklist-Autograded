@@ -35,19 +35,20 @@ function validateInput(testInput) {
   }
 }
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
   let pilotStatus = document.getElementById("pilotStatus");
   let copilotStatus = document.getElementById("copilotStatus");
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
   let launchStatus = document.getElementById("launchStatus");
+  //let list = document.getElementById("faultyItems");
 
   // Validation checks
   if (
     validateInput(pilot) === "Empty" ||
     validateInput(copilot) === "Empty" ||
     validateInput(fuelLevel) === "Empty" ||
-    validateInput(cargoLevel) === "Empty"
+    validateInput(cargoMass) === "Empty"
   ) {
     alert("All fields are required!");
     return;
@@ -55,7 +56,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
   if (
     validateInput(fuelLevel) === "Not a Number" ||
-    validateInput(cargoLevel) === "Not a Number"
+    validateInput(cargoMass) === "Not a Number"
   ) {
     alert("Fuel level and cargo mass must be numbers!");
     return;
@@ -73,7 +74,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
 
   let fuelReady = fuelLevel >= 10000;
-  let cargoReady = cargoLevel <= 10000;
+  let cargoReady = cargoMass <= 10000;
 
   if (!fuelReady || !cargoReady) {
     list.style.visibility = "visible";
@@ -104,11 +105,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 async function myFetch() {
   let planetsReturned;
-
   planetsReturned = await fetch(
     "https://handlers.education.launchcode.org/static/planets.json"
-  ).then(function (response) {});
-
+  ).then((response) => response.json());
   return planetsReturned;
 }
 
