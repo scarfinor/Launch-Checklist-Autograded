@@ -78,8 +78,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
 
   if (!fuelReady || !cargoReady) {
     list.style.visibility = "visible";
-  } else {
-    list.style.visibility = "hidden";
   }
 
   if (!fuelReady) {
