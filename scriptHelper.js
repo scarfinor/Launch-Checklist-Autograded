@@ -41,7 +41,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
   let launchStatus = document.getElementById("launchStatus");
-  //let list = document.getElementById("faultyItems");
 
   // Validation checks
   if (
@@ -50,24 +49,21 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
     validateInput(fuelLevel) === "Empty" ||
     validateInput(cargoMass) === "Empty"
   ) {
-    alert("All fields are required!");
-    return;
+    window.alert("All fields are required!");
   }
 
   if (
     validateInput(fuelLevel) === "Not a Number" ||
     validateInput(cargoMass) === "Not a Number"
   ) {
-    alert("Fuel level and cargo mass must be numbers!");
-    return;
+    window.alert("Fuel level and cargo mass must be numbers!");
   }
 
   if (
     validateInput(pilot) === "Is a Number" ||
     validateInput(copilot) === "Is a Number"
   ) {
-    alert("Pilot and Co-pilot names must be strings!");
-    return;
+    window.alert("Pilot and Co-pilot names must be strings!");
   }
 
   pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
