@@ -11,7 +11,7 @@ function addDestinationInfo(
   moons,
   imageUrl
 ) {
-  let missionTarget = document.getElementById("missionTarget");
+  const missionTarget = document.getElementById("missionTarget");
   missionTarget.innerHTML = `
                  <h2>Mission Destination</h2>
                  <ol>
