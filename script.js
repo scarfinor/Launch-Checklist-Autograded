@@ -3,7 +3,7 @@
 const { formSubmission, myFetch, validateInput } = require("./scriptHelper");
 
 window.addEventListener("load", function () {
-  let form = document.querySelector("form");
+  let form = document.getElementById("launchForm");
   form.addEventListener("submit", function (event) {
     let pilot = document.querySelector("input[name=pilotName]");
     let copilot = document.querySelector("input[name=copilotName]");
