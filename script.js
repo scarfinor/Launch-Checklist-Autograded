@@ -1,7 +1,5 @@
 // Write your JavaScript code here!
 
-const { formSubmission, myFetch, validateInput } = require("./scriptHelper");
-
 window.addEventListener("load", function () {
   let form = document.getElementById("launchForm");
   form.addEventListener("submit", function (event) {
@@ -13,6 +11,7 @@ window.addEventListener("load", function () {
 
     formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
     event.preventDefault();
+    console.log("Hello World!");
   });
 
   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
