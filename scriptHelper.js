@@ -72,11 +72,11 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     window.alert("Pilot and Co-pilot names must be strings!");
   }
 
-  if (isNaN(fuelLevel) || fuelLevel.trim() === "") {
+  if (isNaN(fuelLevel)) {
     alert("Make sure to enter valid information for each field!");
   }
 
-  if (isNaN(cargoMass) || cargoMass.trim() === "") {
+  if (isNaN(cargoLevel)) {
     alert("Make sure to enter valid information for each field!");
   }
   pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
