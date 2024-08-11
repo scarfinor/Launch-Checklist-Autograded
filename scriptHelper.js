@@ -21,7 +21,7 @@ function addDestinationInfo(
                      <li>Distance from Earth: ${distance}</li>
                      <li>Number of Moons: ${moons}</li>
                  </ol>
-                 <img src="${imageUrl}">
+                 <img src="${image}">
                  `;
 }
 
@@ -60,8 +60,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
   }
 
   if (
-    validateInput(pilot) === "Is a Number" ||
-    validateInput(copilot) === "Is a Number"
+    validateInput(pilot.name) === "Is a Number" ||
+    validateInput(copilot.name) === "Is a Number"
   ) {
     window.alert("Pilot and Co-pilot names must be strings!");
   }

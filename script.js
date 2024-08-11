@@ -3,8 +3,8 @@
 window.addEventListener("load", function () {
   let form = document.getElementById("launchForm");
   form.addEventListener("submit", function (event) {
-    let pilot = document.querySelector("input[name=pilotName]");
-    let copilot = document.querySelector("input[name=copilotName]");
+    let pilot = document.querySelector("input[name=pilotName]").value;
+    let copilot = document.querySelector("input[name=copilotName]").value;
     let fuelLevel = document.querySelector("input[name=fuelLevel]");
     let cargoMass = document.querySelector("input[name=cargoMass]");
     let list = document.getElementById("faultyItems");
@@ -32,7 +32,7 @@ window.addEventListener("load", function () {
         selectedPlanet.star,
         selectedPlanet.distance,
         selectedPlanet.moons,
-        selectedPlanet.imageUrl
+        selectedPlanet.image
       );
     });
 });
