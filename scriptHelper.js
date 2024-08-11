@@ -35,26 +35,32 @@ function validateInput(testInput) {
   }
 }
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let pilotStatus = document.getElementById("pilotStatus");
   let copilotStatus = document.getElementById("copilotStatus");
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
   let launchStatus = document.getElementById("launchStatus");
-
+  console.log(pilot);
+  console.log(copilot);
+  console.log(fuelLevel);
+  console.log(cargoLevel);
   // Validation checks
   if (
     validateInput(pilot) === "Empty" ||
     validateInput(copilot) === "Empty" ||
-    validateInput(fuelLevel) === "Empty" ||
-    validateInput(cargoMass) === "Empty"
+    validateInput(fuelLevel) == "Empty" ||
+    validateInput(cargoLevel) === "Empty"
   ) {
     window.alert("All fields are required!");
   }
-
+  console.log(pilot);
+  console.log(copilot);
+  console.log(fuelLevel);
+  console.log(cargoLevel);
   if (
     validateInput(fuelLevel) === "Not a Number" ||
-    validateInput(cargoMass) === "Not a Number"
+    validateInput(cargoLevel) === "Not a Number"
   ) {
     window.alert("Fuel level and cargo mass must be numbers!");
   }
@@ -66,11 +72,18 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
     window.alert("Pilot and Co-pilot names must be strings!");
   }
 
+  if (isNaN(fuelLevel) || fuelLevel.trim() === "") {
+    alert("Make sure to enter valid information for each field!");
+  }
+
+  if (isNaN(cargoMass) || cargoMass.trim() === "") {
+    alert("Make sure to enter valid information for each field!");
+  }
   pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
   copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
 
   let fuelReady = fuelLevel >= 10000;
-  let cargoReady = cargoMass <= 10000;
+  let cargoReady = cargoLevel <= 10000;
 
   if (!fuelReady || !cargoReady) {
     list.style.visibility = "visible";
