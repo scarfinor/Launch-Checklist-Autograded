@@ -9,7 +9,7 @@ function addDestinationInfo(
   star,
   distance,
   moons,
-  imageUrl
+  image
 ) {
   const missionTarget = document.getElementById("missionTarget");
   missionTarget.innerHTML = `
