@@ -41,10 +41,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
   let launchStatus = document.getElementById("launchStatus");
-  console.log(pilot);
-  console.log(copilot);
-  console.log(fuelLevel);
-  console.log(cargoLevel);
+  const delay = 10000;
+list.style.visibility = "hidden";
   // Validation checks
   if (
     validateInput(pilot) === "Empty" ||
@@ -52,51 +50,77 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     validateInput(fuelLevel) == "Empty" ||
     validateInput(cargoLevel) === "Empty"
   ) {
-    window.alert("All fields are required!");
+    window.alert("All fields required for launch");
+    launchStatus.innerHTML = "Shuttle is not ready for launch"
+    launchStatus.style.color = "red"
+    setTimeout(function() {
+      window.location.reload();
+  }, delay) 
   }
-  console.log(pilot);
-  console.log(copilot);
-  console.log(fuelLevel);
-  console.log(cargoLevel);
+ 
   if (
     validateInput(fuelLevel) === "Not a Number" ||
     validateInput(cargoLevel) === "Not a Number"
   ) {
+    
     window.alert("Fuel level and cargo mass must be numbers!");
+    fuelStatus.innerHTML = "Fuel status required for launch"
+  cargoStatus.innerHTML = "Cargo status required for launch"
+    launchStatus.innerHTML = "Shuttle is not ready for launch"
+    launchStatus.style.color = "red"
+    setTimeout(function() {
+      window.location.reload();
+  }, delay); 
   }
 
   if (
-    validateInput(pilot.name) === "Is a Number" ||
-    validateInput(copilot.name) === "Is a Number"
+    validateInput(pilot) === "Is a Number" ||
+    validateInput(copilot) === "Is a Number"
   ) {
     window.alert("Pilot and Co-pilot names must be strings!");
+    pilotStatus.innerHTML = "Pilot required for launch"
+    copilotStatus.innerHTML = "Co-pilot required for launch"
+    launchStatus.innerHTML = "Shuttle is not ready for launch"
+    launchStatus.style.color = "red"
+    setTimeout(function() {
+      window.location.reload();
+  }, delay); 
   }
 
-  if (isNaN(fuelLevel)) {
+  if (isNaN(fuelLevel) || isNaN(cargoLevel)) {
     alert("Make sure to enter valid information for each field!");
+     fuelStatus.innerHTML = "Fuel status required for launch"
+  cargoStatus.innerHTML = "Cargo status required for launch"
+    launchStatus.innerHTML = "Shuttle is not ready for launch"
+    launchStatus.style.color = "red"
+     setTimeout(function() {
+      window.location.reload();
+  }, delay);
   }
 
-  if (isNaN(cargoLevel)) {
-    alert("Make sure to enter valid information for each field!");
-  }
-  pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
-  copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+  let fuelReady = !isNaN(fuelLevel) && fuelLevel >= 10000;
+  let cargoReady = !isNaN(cargoLevel) && cargoLevel <= 10000;
 
-  let fuelReady = fuelLevel >= 10000;
-  let cargoReady = cargoLevel <= 10000;
-
-  if (!fuelReady || !cargoReady) {
+  if (fuelReady || cargoReady) {
     list.style.visibility = "visible";
   }
 
   if (!fuelReady) {
     fuelStatus.innerHTML = "Fuel level too low for launch";
+    setTimeout(function() {
+    list.style.visibility = "visible";
+      window.location.reload();
+  }, delay)
   } else {
     fuelStatus.innerHTML = "Fuel level high enough for launch";
   }
 
   if (!cargoReady) {
     cargoStatus.innerHTML = "Cargo mass too heavy for launch";
+    list.style.visibility = "visible";
+    setTimeout(function() {
+      window.location.reload();
+  }, delay)
   } else {
     cargoStatus.innerHTML = "Cargo mass low enough for launch";
   }
@@ -107,7 +131,12 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   } else {
     launchStatus.innerHTML = "Shuttle Not Ready for Launch";
     launchStatus.style.color = "red";
-  }
+    setTimeout(function() {
+      window.location.reload();
+  }, delay)
+}
+pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+  copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
 }
 
 async function myFetch() {
